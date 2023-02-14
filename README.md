@@ -1,4 +1,4 @@
-# Template: Workshop Reader
+# Data visualization with ggplot2
 
 This repository is a template for workshop readers for the UC Davis DataLab.
 This template uses **bookdown** to knit the reader. You can also optionally use
