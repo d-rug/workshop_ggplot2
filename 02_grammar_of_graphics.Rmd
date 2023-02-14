@@ -1,0 +1,29 @@
+# The grammar of graphics
+
+The grammar of graphics breaks the elements of statistical graphics into parts in an analogy to human language grammars. Knowing how to put together subject nouns, object nouns, verbs, and adjectives allows you to construct sentences that express meaning. Similarly, the grammar of graphics is a collection of layers and the rules for putting them together to graphically express the meaning of your data. `ggplot2` is a software tool that understands ideas expressed in the grammar of graphics and can draw the requested picture.
+
+Ideas in the grammar of graphics are expressed in layers. The most basic layer is the data itself, and there is an aesthetic layer that describes how data maps onto dimensions like color, x/y coordinates, and size. This layer is distinct from the geometry layer, which describes the way that data should be drawn (e.g., dots, lines, or bars). There are other kinds of layers, but many plots can be specified as the combination of data, aesthetic mapping, and geometry. Let's see one.
+
+## Example: distance to stop a car
+One of the datasets built into R is an experiment from the 1920s that measured how far (in feet) cars needed to stop from speeds of 4-25 miles per hour.
+
+```{r}
+data(cars)
+library( ggplot2 )
+
+ggplot(cars) + aes(x=speed, y=dist) + geom_point()
+```
+
+
+## Layers
+
+Layers are the building blocks of the grammar of graphics. There aren't even that many of them! Here is the list, and the name of the function(s) you'll use to control the layer.
+
+- Data (`ggplot2()`) - provides the data for the visualization.
+- Aesthetics (`aes()`) - a mapping that indicates which variables in the data control which dimension in the plot (here "dimension" is used in an abstract way to include things like shape, color, and line width.)
+- Geometry (`geom_*()`) - how the abstract dimensions of the aesthetic layer will be drawn in the figure.
+- Statistical transform (`stat_*()`) - alters the data before it enters the aesthetics layer - for instance binning or removing duplicates.
+- Scale (`scale_*()`) - used to control the way that values in the data are mapped to the aesthetic dimensions. For instance, you can control how numbers or categories in the data map to colors.
+- Coordinates (`coord_*()`) - used to control how the data are mapped to plot axes.
+- Facets (`facet_*()`) - used to control how data are separated into subplots called "facets".
+- Theme (`theme()`) - used to control plot details like titles, labels, and legends.
