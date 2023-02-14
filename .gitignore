@@ -28,3 +28,6 @@ Temporary Items
 _main*
 docs/*.md
 .Rproj.user
+
+workshop_ggplot2.Rproj
+_bookdown_files/
