@@ -4,23 +4,23 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>YOUR WORKSHOP TITLE</title>
-  <meta name="description" content="YOUR WORKSHOP TITLE" />
+  <title>Data Visualization in R using ggplot2</title>
+  <meta name="description" content="Data Visualization in R using ggplot2" />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="YOUR WORKSHOP TITLE" />
+  <meta property="og:title" content="Data Visualization in R using ggplot2" />
   <meta property="og:type" content="book" />
   
   
-  <meta name="github-repo" content="d-rug/YOUR_REPO" />
+  <meta name="github-repo" content="d-rug/workshop_ggplot2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="YOUR WORKSHOP TITLE" />
+  <meta name="twitter:title" content="Data Visualization in R using ggplot2" />
   
   
   
 
-<meta name="author" content="YOUR NAME" />
+<meta name="author" content="Wesley Brooks" />
 
 
 <meta name="date" content="2023-02-14" />
@@ -135,7 +135,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://d-rug.github.io/">
   <img src="https://github.com/d-rug/d-rug.github.io/raw/main/DRUG_final_cobalt.png" style="height: 100%; width: 100%; object-fit: contain" />
 </a></li>
-<li><a href="./" style="font-size: 18px">YOUR WORKSHOP TITLE</a></li>
+<li><a href="./" style="font-size: 18px">Data Visualization in R using `ggplot2`</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
@@ -147,7 +147,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html"><i class="fa fa-check"></i><b>3</b> Guidelines for graphics</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#feature-types"><i class="fa fa-check"></i><b>3.1</b> Feature types</a></li>
+<li class="chapter" data-level="3.1" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#data"><i class="fa fa-check"></i><b>3.1</b> Data</a></li>
+<li class="chapter" data-level="3.2" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#feature-types"><i class="fa fa-check"></i><b>3.2</b> Feature types</a></li>
+<li class="chapter" data-level="3.3" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#theme-guidelines"><i class="fa fa-check"></i><b>3.3</b> Theme guidelines</a></li>
+<li class="chapter" data-level="3.4" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#scale-guidelines"><i class="fa fa-check"></i><b>3.4</b> Scale guidelines</a></li>
+<li class="chapter" data-level="3.5" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#facet-guidelines"><i class="fa fa-check"></i><b>3.5</b> Facet guidelines</a></li>
+<li class="chapter" data-level="3.6" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#example-revisited"><i class="fa fa-check"></i><b>3.6</b> Example, revisited</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>4</b> Examples</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="examples.html"><a href="examples.html#bird-flu-mortality"><i class="fa fa-check"></i><b>4.1</b> Bird Flu mortality</a></li>
+<li class="chapter" data-level="4.2" data-path="examples.html"><a href="examples.html#small-business-loans"><i class="fa fa-check"></i><b>4.2</b> Small business loans</a></li>
 </ul></li>
 <li class="divider"></li>
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
@@ -163,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YOUR WORKSHOP TITLE</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization in R using <code>ggplot2</code></a>
           </h1>
         </div>
 
@@ -172,8 +182,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">YOUR WORKSHOP TITLE</h1>
-<p class="author"><em>YOUR NAME</em></p>
+<h1 class="title">Data Visualization in R using <code>ggplot2</code></h1>
+<p class="author"><em>Wesley Brooks</em></p>
 <p class="date"><em>2023-02-14</em></p>
 </div>
 <div id="overview" class="section level1 unnumbered hasAnchor">
@@ -208,7 +218,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/d-rug/YOUR_REPO/edit/master/index.Rmd",
+"link": "https://github.com/d-rug/workshop_ggplot2/edit/master/index.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -216,7 +226,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/d-rug/YOUR_REPO/blob/master/index.Rmd",
+"link": "https://github.com/d-rug/workshop_ggplot2/blob/master/index.Rmd",
 "text": null
 },
 "download": null,

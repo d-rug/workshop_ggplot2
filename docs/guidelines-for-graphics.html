@@ -4,23 +4,23 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Guidelines for graphics | YOUR WORKSHOP TITLE</title>
-  <meta name="description" content="3 Guidelines for graphics | YOUR WORKSHOP TITLE" />
+  <title>3 Guidelines for graphics | Data Visualization in R using ggplot2</title>
+  <meta name="description" content="3 Guidelines for graphics | Data Visualization in R using ggplot2" />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Guidelines for graphics | YOUR WORKSHOP TITLE" />
+  <meta property="og:title" content="3 Guidelines for graphics | Data Visualization in R using ggplot2" />
   <meta property="og:type" content="book" />
   
   
-  <meta name="github-repo" content="d-rug/YOUR_REPO" />
+  <meta name="github-repo" content="d-rug/workshop_ggplot2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Guidelines for graphics | YOUR WORKSHOP TITLE" />
+  <meta name="twitter:title" content="3 Guidelines for graphics | Data Visualization in R using ggplot2" />
   
   
   
 
-<meta name="author" content="YOUR NAME" />
+<meta name="author" content="Wesley Brooks" />
 
 
 <meta name="date" content="2023-02-14" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="the-grammar-of-graphics.html"/>
-
+<link rel="next" href="examples.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -135,7 +135,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://d-rug.github.io/">
   <img src="https://github.com/d-rug/d-rug.github.io/raw/main/DRUG_final_cobalt.png" style="height: 100%; width: 100%; object-fit: contain" />
 </a></li>
-<li><a href="./" style="font-size: 18px">YOUR WORKSHOP TITLE</a></li>
+<li><a href="./" style="font-size: 18px">Data Visualization in R using `ggplot2`</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
@@ -147,7 +147,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html"><i class="fa fa-check"></i><b>3</b> Guidelines for graphics</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#feature-types"><i class="fa fa-check"></i><b>3.1</b> Feature types</a></li>
+<li class="chapter" data-level="3.1" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#data"><i class="fa fa-check"></i><b>3.1</b> Data</a></li>
+<li class="chapter" data-level="3.2" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#feature-types"><i class="fa fa-check"></i><b>3.2</b> Feature types</a></li>
+<li class="chapter" data-level="3.3" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#theme-guidelines"><i class="fa fa-check"></i><b>3.3</b> Theme guidelines</a></li>
+<li class="chapter" data-level="3.4" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#scale-guidelines"><i class="fa fa-check"></i><b>3.4</b> Scale guidelines</a></li>
+<li class="chapter" data-level="3.5" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#facet-guidelines"><i class="fa fa-check"></i><b>3.5</b> Facet guidelines</a></li>
+<li class="chapter" data-level="3.6" data-path="guidelines-for-graphics.html"><a href="guidelines-for-graphics.html#example-revisited"><i class="fa fa-check"></i><b>3.6</b> Example, revisited</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>4</b> Examples</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="examples.html"><a href="examples.html#bird-flu-mortality"><i class="fa fa-check"></i><b>4.1</b> Bird Flu mortality</a></li>
+<li class="chapter" data-level="4.2" data-path="examples.html"><a href="examples.html#small-business-loans"><i class="fa fa-check"></i><b>4.2</b> Small business loans</a></li>
 </ul></li>
 <li class="divider"></li>
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
@@ -163,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YOUR WORKSHOP TITLE</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization in R using <code>ggplot2</code></a>
           </h1>
         </div>
 
@@ -178,9 +188,19 @@ visualizations</a>, reated by Nick Ulle of UC
 Davis Datalab. Download it and keep a copy around - it’s an excellent
 guide. I’m going to go over how the checklist translates into the
 grammar of graphics.</p>
-<div id="feature-types" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Feature types<a href="guidelines-for-graphics.html#feature-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The first item on the list is a table of options for geometries that are commonly relevant for a given kind of data - for instance, a histogram is a geometry that can be used with a single numeric feature, and a box plot can be used with one numeric and one categorical feature.</p>
+<div id="data" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Data<a href="guidelines-for-graphics.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You can’t have a data visualization without data! <code>ggplot2</code> expects that your data is <strong>tidy</strong>, which means that each row is a complete observation and each column is a unique feature. In fact, <code>ggplot2</code> is part of an actively developing collection of packages <a href="https://tidyverse.org">called the <code>tidyverse</code></a> that provides ways to create and work with tidy data. You dont have to adopt the entire tidyverse to use <code>ggplot2</code>, though.</p>
+</div>
+<div id="feature-types" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Feature types<a href="guidelines-for-graphics.html#feature-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The first item on the list is a table of options for geometries that are commonly relevant for a given kind of data - for instance, a histogram is a geometry that can be used with a single numeric feature, and a box plot can be used with one numeric and one categorical feature.
+- Should it be a dot plot? Pie plots are hard
+to read and bar plots don’t use space efficiently (Cleveland and McGill
+1990; Heer and Bostock 2010). Generally a dot plot is a better choice.</p>
+</div>
+<div id="theme-guidelines" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Theme guidelines<a href="guidelines-for-graphics.html#theme-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Does the
 graphic convey important information? Don’t include graphics that are
@@ -193,28 +213,41 @@ variable names!).</li>
 dollars, etc).</li>
 <li>Legend? Any graphic that shows two or more categories
 coded by style or color must include a legend.</li>
-<li>Appropriate scales and
+</ul>
+</div>
+<div id="scale-guidelines" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Scale guidelines<a href="guidelines-for-graphics.html#scale-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Appropriate scales and
 limits? Make sure the scales and limits of the axes do not lead people
 to incorrect conclusions. For side-by-side graphics or graphics that
-viewers will compare, use identical scales and limits.</li>
-<li>No overplotting?
-Scatter plots where many plot points overlap hide the actual patterns in
-the data. Make the points smaller or use a two-dimensional density plot
-(a smooth scatter plot) instead.</li>
+viewers will compare, use identical scales and limits.</p></li>
+<li><p>Print safe? Design graphics to be legible in black &amp; white. Color is
+great, but use point and line styles to distinguish groups in addition
+to color. Also try to choose colors that are accessible to colorblind
+people. The RColorBrewer and viridis packages can help with choosing
+colors.</p></li>
+</ul>
+</div>
+<div id="facet-guidelines" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Facet guidelines<a href="guidelines-for-graphics.html#facet-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
 <li>No more than 5 lines? Line plots with
 more than 5 lines risk becoming hard-to-read “spaghetti” plots.
 Generally a line plot with more than 5 lines should be split into
 multiple plots with fewer lines. If the x-axis is discrete, consider
 using a heat map instead.</li>
-<li>Should it be a dot plot? Pie plots are hard
-to read and bar plots don’t use space efficiently (Cleveland and McGill
-1990; Heer and Bostock 2010). Generally a dot plot is a better choice.</li>
-<li>Print safe? Design graphics to be legible in black &amp; white. Color is
-great, but use point and line styles to distinguish groups in addition
-to color. Also try to choose colors that are accessible to colorblind
-people. The RColorBrewer and viridis packages can help with choosing
-colors.</li>
+<li>No overplotting?
+Scatter plots where many plot points overlap hide the actual patterns in
+the data. Consider splitting the data into facets, making the points smaller, or using a two-dimensional density plot (a smooth scatter plot) instead.</li>
 </ul>
+</div>
+<div id="example-revisited" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Example, revisited<a href="guidelines-for-graphics.html#example-revisited" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Our earlier example violates some of these rules: it has no title, the axes are labeled with variable names instead of plain language, and the plot units aren’t provided.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="guidelines-for-graphics.html#cb4-1" tabindex="-1"></a><span class="co"># create the plot with labels and title</span></span>
+<span id="cb4-2"><a href="guidelines-for-graphics.html#cb4-2" tabindex="-1"></a><span class="fu">ggplot</span>(cars) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x=</span>speed, <span class="at">y=</span>dist) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;speed (mph)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;stopping distance (feet)&quot;</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Stopping distance&quot;</span>)</span></code></pre></div>
+<p><img src="03_guidelines_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -223,8 +256,8 @@ colors.</li>
           </div>
         </div>
       </div>
-<a href="the-grammar-of-graphics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="the-grammar-of-graphics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="examples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -245,7 +278,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/d-rug/YOUR_REPO/edit/master/03_guidelines.Rmd",
+"link": "https://github.com/d-rug/workshop_ggplot2/edit/master/03_guidelines.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -253,7 +286,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/d-rug/YOUR_REPO/blob/master/03_guidelines.Rmd",
+"link": "https://github.com/d-rug/workshop_ggplot2/blob/master/03_guidelines.Rmd",
 "text": null
 },
 "download": null,
