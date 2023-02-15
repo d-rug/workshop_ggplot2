@@ -23,7 +23,7 @@
 <meta name="author" content="Wesley Brooks" />
 
 
-<meta name="date" content="2023-02-14" />
+<meta name="date" content="2023-02-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -138,7 +138,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./" style="font-size: 18px">Data Visualization in R using `ggplot2`</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#ggplot2"><i class="fa fa-check"></i><b>0.1</b> ggplot2</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="the-grammar-of-graphics.html"><a href="the-grammar-of-graphics.html"><i class="fa fa-check"></i><b>2</b> The grammar of graphics</a>
 <ul>
@@ -186,9 +189,152 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We have covered enough of the grammar of graphics that you should begin to see the patterns in how it is used to express graphical ideas for <code>ggplot2</code>. Here, we will work through some examples.</p>
 <div id="bird-flu-mortality" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Bird Flu mortality<a href="examples.html#bird-flu-mortality" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>People mail dead birds to the USDA and USGS, where scientists analyze the birds to find out why they died. Right now there is a bird flu epidemic, and the USDA provides public data about the birds in whom the disease has been detected. You can access the data here: <a href="https://www.aphis.usda.gov/aphis/ourfocus/animalhealth/animal-disease-information/avian/avian-influenza/hpai-2022/2022-hpai-wild-birds">https://www.aphis.usda.gov/aphis/ourfocus/animalhealth/animal-disease-information/avian/avian-influenza/hpai-2022/2022-hpai-wild-birds</a>. We will load the data and do some visualization.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="examples.html#cb5-1" tabindex="-1"></a><span class="co"># load data directly from the USDA website</span></span>
+<span id="cb5-2"><a href="examples.html#cb5-2" tabindex="-1"></a>flu <span class="ot">=</span> <span class="fu">read_csv</span>( <span class="fu">url</span>(<span class="st">&quot;https://www.aphis.usda.gov/animal_health/data-csv/hpai-wild-birds-ver2.csv&quot;</span>))</span></code></pre></div>
+<pre><code>## Rows: 6192 Columns: 8
+## ── Column specification ───────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (8): State, County, Date Detected, HPAI Strain, Bird Species, WOAH Class...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="examples.html#cb7-1" tabindex="-1"></a>flu<span class="sc">$</span>date <span class="ot">=</span> <span class="fu">mdy</span>(flu<span class="sc">$</span><span class="st">`</span><span class="at">Date Detected</span><span class="st">`</span>)</span>
+<span id="cb7-2"><a href="examples.html#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="examples.html#cb7-3" tabindex="-1"></a><span class="co"># plot a histogram of when bird flu was detected</span></span>
+<span id="cb7-4"><a href="examples.html#cb7-4" tabindex="-1"></a><span class="fu">ggplot</span>(flu) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="examples.html#cb7-5" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>date) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="examples.html#cb7-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb7-7"><a href="examples.html#cb7-7" tabindex="-1"></a>  <span class="fu">ggtitle</span>( <span class="st">&quot;Bird flu detections in wild birds&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="examples.html#cb7-8" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Date&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="examples.html#cb7-9" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="04_examples_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="examples.html#cb9-1" tabindex="-1"></a><span class="co"># plot a histogram of when bird flu was detected</span></span>
+<span id="cb9-2"><a href="examples.html#cb9-2" tabindex="-1"></a><span class="fu">ggplot</span>(flu) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="examples.html#cb9-3" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">fill=</span><span class="st">`</span><span class="at">Sampling Method</span><span class="st">`</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="examples.html#cb9-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb9-5"><a href="examples.html#cb9-5" tabindex="-1"></a>  <span class="fu">ggtitle</span>( <span class="st">&quot;Bird flu detections in wild birds&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="examples.html#cb9-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Date&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="examples.html#cb9-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="04_examples_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="examples.html#cb11-1" tabindex="-1"></a><span class="co"># bar chart shows how the bird flu reports compare between west coast states</span></span>
+<span id="cb11-2"><a href="examples.html#cb11-2" tabindex="-1"></a><span class="fu">subset</span>(flu, State <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;California&quot;</span>, <span class="st">&quot;Oregon&quot;</span>, <span class="st">&quot;Washington&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="examples.html#cb11-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a href="examples.html#cb11-4" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>State, <span class="at">fill=</span><span class="st">`</span><span class="at">Sampling Method</span><span class="st">`</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="examples.html#cb11-5" tabindex="-1"></a>    <span class="fu">stat_count</span>() <span class="sc">+</span></span>
+<span id="cb11-6"><a href="examples.html#cb11-6" tabindex="-1"></a>    <span class="fu">geom_bar</span>()  <span class="sc">+</span> </span>
+<span id="cb11-7"><a href="examples.html#cb11-7" tabindex="-1"></a>    <span class="fu">ggtitle</span>( <span class="st">&quot;Bird flu detections in wild birds (West coast states)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="examples.html#cb11-8" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
+<p><img src="04_examples_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
+<p>Let’s compare the bird flu season to the human flu season. Download hospitalization data for the 2021-2022 and 2022-2023 flu seasons from the CDC website here: <a href="https://gis.cdc.gov/GRASP/Fluview/FluHospRates.html">https://gis.cdc.gov/GRASP/Fluview/FluHospRates.html</a> (the download button is at the top right and you need to specify which seasons to download).</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="examples.html#cb12-1" tabindex="-1"></a><span class="co"># processing CDC flu data:</span></span>
+<span id="cb12-2"><a href="examples.html#cb12-2" tabindex="-1"></a>cdc <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/FluSurveillance_Custom_Download_Data.csv&quot;</span>, <span class="at">skip=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
+##   dat &lt;- vroom(...)
+##   problems(dat)</code></pre>
+<pre><code>## Rows: 1538 Columns: 10
+## ── Column specification ───────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (8): CATCHMENT, NETWORK, YEAR, AGE CATEGORY, SEX CATEGORY, RACE CATEGORY...
+## dbl (2): MMWR-YEAR, MMWR-WEEK
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="examples.html#cb15-1" tabindex="-1"></a>cdc<span class="sc">$</span>date <span class="ot">=</span> <span class="fu">as_date</span>(<span class="st">&quot;1950-01-01&quot;</span>)</span>
+<span id="cb15-2"><a href="examples.html#cb15-2" tabindex="-1"></a><span class="fu">year</span>(cdc<span class="sc">$</span>date) <span class="ot">=</span> cdc<span class="sc">$</span><span class="st">`</span><span class="at">MMWR-YEAR</span><span class="st">`</span></span>
+<span id="cb15-3"><a href="examples.html#cb15-3" tabindex="-1"></a><span class="fu">week</span>(cdc<span class="sc">$</span>date) <span class="ot">=</span> cdc<span class="sc">$</span><span class="st">`</span><span class="at">MMWR-WEEK</span><span class="st">`</span></span>
+<span id="cb15-4"><a href="examples.html#cb15-4" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="examples.html#cb15-5" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="examples.html#cb15-6" tabindex="-1"></a><span class="co"># get flu hospitalization counts that include all race, sex, and age categories</span></span>
+<span id="cb15-7"><a href="examples.html#cb15-7" tabindex="-1"></a>cdc_overall <span class="ot">=</span> <span class="fu">subset</span>(cdc,</span>
+<span id="cb15-8"><a href="examples.html#cb15-8" tabindex="-1"></a>                     <span class="st">`</span><span class="at">AGE CATEGORY</span><span class="st">`</span><span class="sc">==</span><span class="st">&quot;Overall&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb15-9"><a href="examples.html#cb15-9" tabindex="-1"></a>                       <span class="st">`</span><span class="at">SEX CATEGORY</span><span class="st">`</span><span class="sc">==</span><span class="st">&quot;Overall&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb15-10"><a href="examples.html#cb15-10" tabindex="-1"></a>                       <span class="st">`</span><span class="at">RACE CATEGORY</span><span class="st">`</span><span class="sc">==</span><span class="st">&quot;Overall&quot;</span>)</span>
+<span id="cb15-11"><a href="examples.html#cb15-11" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="examples.html#cb15-12" tabindex="-1"></a><span class="co"># convert the counts to cases per 10 million</span></span>
+<span id="cb15-13"><a href="examples.html#cb15-13" tabindex="-1"></a>cdc_overall<span class="sc">$</span><span class="st">`</span><span class="at">WEEKLY RATE</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(cdc_overall<span class="sc">$</span><span class="st">`</span><span class="at">WEEKLY RATE</span><span class="st">`</span>) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="examples.html#cb17-1" tabindex="-1"></a><span class="co"># remake the plot but add a new geom_line() with its own data</span></span>
+<span id="cb17-2"><a href="examples.html#cb17-2" tabindex="-1"></a><span class="fu">ggplot</span>(flu) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="examples.html#cb17-3" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">fill=</span><span class="st">`</span><span class="at">Sampling Method</span><span class="st">`</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="examples.html#cb17-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb17-5"><a href="examples.html#cb17-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data=</span>cdc_overall, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span><span class="st">`</span><span class="at">WEEKLY RATE</span><span class="st">`</span>), <span class="at">inherit.aes=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="examples.html#cb17-6" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Bird flu detections and human flu hospitalizations&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="examples.html#cb17-7" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Date&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb17-8"><a href="examples.html#cb17-8" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 12 rows containing missing values (`geom_line()`).</code></pre>
+<p><img src="04_examples_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="small-business-loans" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Small business loans<a href="examples.html#small-business-loans" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The US Small Business Administration (SBA) maintains data on the loans it offers to businesses. Data about loans made since 2020 can be found at <a href="https://data.sba.gov/dataset/7-a-504-foia">https://data.sba.gov/dataset/7-a-504-foia</a>. We’ll load that data and then explore some ways to visualize it.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="examples.html#cb20-1" tabindex="-1"></a><span class="co"># load the small business loan data</span></span>
+<span id="cb20-2"><a href="examples.html#cb20-2" tabindex="-1"></a>sba <span class="ot">=</span> <span class="fu">read_csv</span>( <span class="fu">url</span>(<span class="st">&quot;https://data.sba.gov/dataset/0ff8e8e9-b967-4f4e-987c-6ac78c575087/resource/c71ba6cf-b4e0-4e60-98f0-48aeaf4c6460/download/foia-7afy2020-present-asof-221231.csv&quot;</span>))</span></code></pre></div>
+<pre><code>## Rows: 154807 Columns: 39
+## ── Column specification ───────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (27): Program, BorrName, BorrStreet, BorrCity, BorrState, BorrZip, BankN...
+## dbl (12): AsOfDate, BankFDICNumber, BankNCUANumber, GrossApproval, SBAGuaran...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="examples.html#cb22-1" tabindex="-1"></a><span class="co"># check the SBA data to see the data types, etc.</span></span>
+<span id="cb22-2"><a href="examples.html#cb22-2" tabindex="-1"></a><span class="fu">head</span>(sba)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 39
+##   AsOfDate Program BorrName      BorrS…¹ BorrC…² BorrS…³ BorrZip BankN…⁴ BankF…⁵
+##      &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
+## 1 20221231 7A      Mark Dusa     3623 S… Sylvan… OH      43560   The Hu…    6560
+## 2 20221231 7A      Shaddai Harr… 614 Va… Arling… TX      76018   People…      NA
+## 3 20221231 7A      Aqualon Inc.  7180 A… Tipp C… OH      45371   The Hu…    6560
+## 4 20221231 7A      Redline Rest… 2450 C… Saint … FL      34772   SouthS…   33555
+## 5 20221231 7A      Meluota Corp  2702 A… ASTORIA NY      11102   Santan…   29950
+## 6 20221231 7A      Sky Lake Vac… 15 Nes… Laconia NH      03246   TD Ban…   18409
+## # … with 30 more variables: BankNCUANumber &lt;dbl&gt;, BankStreet &lt;chr&gt;,
+## #   BankCity &lt;chr&gt;, BankState &lt;chr&gt;, BankZip &lt;chr&gt;, GrossApproval &lt;dbl&gt;,
+## #   SBAGuaranteedApproval &lt;dbl&gt;, ApprovalDate &lt;chr&gt;, ApprovalFiscalYear &lt;dbl&gt;,
+## #   FirstDisbursementDate &lt;chr&gt;, DeliveryMethod &lt;chr&gt;, subpgmdesc &lt;chr&gt;,
+## #   InitialInterestRate &lt;dbl&gt;, TermInMonths &lt;dbl&gt;, NaicsCode &lt;dbl&gt;,
+## #   NaicsDescription &lt;chr&gt;, FranchiseCode &lt;chr&gt;, FranchiseName &lt;chr&gt;,
+## #   ProjectCounty &lt;chr&gt;, ProjectState &lt;chr&gt;, SBADistrictOffice &lt;chr&gt;, …</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="examples.html#cb24-1" tabindex="-1"></a><span class="co"># boxplot of loan sizes by business type</span></span>
+<span id="cb24-2"><a href="examples.html#cb24-2" tabindex="-1"></a><span class="fu">subset</span>( sba, ProjectState<span class="sc">==</span><span class="st">&quot;CA&quot;</span> ) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="examples.html#cb24-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb24-4"><a href="examples.html#cb24-4" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>BusinessType, <span class="at">y=</span>SBAGuaranteedApproval) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="examples.html#cb24-5" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb24-6"><a href="examples.html#cb24-6" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb24-7"><a href="examples.html#cb24-7" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Small Business Administraton guaranteed loans in California&quot;</span>) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="examples.html#cb24-8" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Loan guarantee (dollars)&quot;</span>)</span></code></pre></div>
+<p><img src="04_examples_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="examples.html#cb25-1" tabindex="-1"></a><span class="co"># relationship between loan size and interest rate</span></span>
+<span id="cb25-2"><a href="examples.html#cb25-2" tabindex="-1"></a><span class="fu">subset</span>( sba, ProjectState<span class="sc">==</span><span class="st">&quot;CA&quot;</span> ) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="examples.html#cb25-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb25-4"><a href="examples.html#cb25-4" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>GrossApproval, <span class="at">y=</span>InitialInterestRate, ) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="examples.html#cb25-5" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-6"><a href="examples.html#cb25-6" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>BusinessType, <span class="at">ncol=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="examples.html#cb25-7" tabindex="-1"></a>    <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb25-8"><a href="examples.html#cb25-8" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Interest rate as a function of loan size&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-9"><a href="examples.html#cb25-9" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Loan size (dollars)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="examples.html#cb25-10" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Interest rate (%)&quot;</span>)</span></code></pre></div>
+<p><img src="04_examples_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p>Now let’s see how we can add aesthetic mappings to a plot in order to convey information on a new dimension. In this case, we will color the points by the loan status. If the default colors aren’t working for you, <code>ggplot2</code> can integrate directly with <a href="https://colorbrewer2.org">Color Brewer (colorbrewer2.org)</a>. A smoother can help indicate differences that would otherwise be lost in the noise.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="examples.html#cb26-1" tabindex="-1"></a><span class="co"># color the dots by the oan status.</span></span>
+<span id="cb26-2"><a href="examples.html#cb26-2" tabindex="-1"></a><span class="fu">subset</span>( sba, ProjectState<span class="sc">==</span><span class="st">&quot;CA&quot;</span> <span class="sc">&amp;</span> LoanStatus <span class="sc">!=</span> <span class="st">&quot;EXEMPT&quot;</span> <span class="sc">&amp;</span> LoanStatus <span class="sc">!=</span> <span class="st">&quot;CHGOFF&quot;</span> ) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="examples.html#cb26-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb26-4"><a href="examples.html#cb26-4" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>GrossApproval, <span class="at">y=</span>InitialInterestRate, <span class="at">color=</span>LoanStatus) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="examples.html#cb26-5" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-6"><a href="examples.html#cb26-6" tabindex="-1"></a>    <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb26-7"><a href="examples.html#cb26-7" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>BusinessType, <span class="at">ncol=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="examples.html#cb26-8" tabindex="-1"></a>    <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb26-9"><a href="examples.html#cb26-9" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Interest rate as a function of loan size by loan status&quot;</span>) <span class="sc">+</span></span>
+<span id="cb26-10"><a href="examples.html#cb26-10" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Loan size (dollars)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb26-11"><a href="examples.html#cb26-11" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Interest rate (%)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb26-12"><a href="examples.html#cb26-12" tabindex="-1"></a>    <span class="fu">labs</span>( <span class="at">color=</span><span class="st">&quot;Loan status&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb26-13"><a href="examples.html#cb26-13" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type=</span><span class="st">&quot;qual&quot;</span>, <span class="at">palette=</span><span class="st">&quot;Accent&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="04_examples_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 
 </div>
 </div>
