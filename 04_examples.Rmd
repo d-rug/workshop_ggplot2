@@ -1,0 +1,8 @@
+# Examples
+We have covered enough of the grammar of graphics that you should begin to see the patterns in how it is used to express graphical ideas for `ggplot2`. Here, we will work through some examples.
+
+## Bird Flu mortality
+
+
+
+## Small business loans
