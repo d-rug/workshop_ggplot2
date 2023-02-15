@@ -16,13 +16,15 @@ library( ggplot2 )
 head( cars )
 
 # make a simple plot of the data
-ggplot(cars) + aes(x=speed, y=dist) + geom_point()
+ggplot(cars) + 
+  aes(x=speed, y=dist) +
+  geom_point()
 ```
 
 
 ## Layers
 
-Layers are the building blocks of the grammar of graphics. There aren't even that many of them! Here is the list, and the name of the function(s) you'll use to control the layer. Some of the names include asterisks because there are a lot of similar options - for instance, geometry layers include `geom_point()`, `geom_line()`, `geom_boxplot()`, and many more. See the comprehensive listing on [the official `ggplot2` website](https://ggplot2.tidyverse.org/reference/).
+Layers are the building blocks of the grammar of graphics. The typical pattern is that you express the idea of a plot in the grammar of graphics by adding layers with the addition symbol (`+`). There aren't even that many of layers to know! Here is the list, and the name of the function(s) you'll use to control the layer. Some of the names include asterisks because there are a lot of similar options - for instance, geometry layers include `geom_point()`, `geom_line()`, `geom_boxplot()`, and many more. See the comprehensive listing on [the official `ggplot2` website](https://ggplot2.tidyverse.org/reference/).
 
 - Data (`ggplot2()`) - provides the data for the visualization.
 - Aesthetics (`aes()`) - a mapping that indicates which variables in the data control which dimension in the plot (here "dimension" is used in an abstract way to include things like shape, color, and line width.)

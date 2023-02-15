@@ -63,5 +63,10 @@ Our earlier example violates some of these rules: it has no title, the axes are 
 
 ```{r}
 # create the plot with labels and title
-ggplot(cars) + aes(x=speed, y=dist) + geom_point() + xlab("speed (mph)") + ylab("stopping distance (feet)") + ggtitle("Stopping distance")
+ggplot(cars) +
+  aes(x=speed, y=dist) +
+  geom_point() +
+  xlab("speed (mph)") +
+  ylab("stopping distance (feet)") +
+  ggtitle("Stopping distance")
 ```

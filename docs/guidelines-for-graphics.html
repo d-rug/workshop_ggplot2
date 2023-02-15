@@ -249,7 +249,12 @@ the data. Consider splitting the data into facets, making the points smaller, or
 <h2><span class="header-section-number">3.6</span> Example, revisited<a href="guidelines-for-graphics.html#example-revisited" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Our earlier example violates some of these rules: it has no title, the axes are labeled with variable names instead of plain language, and the plot units aren’t provided.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="guidelines-for-graphics.html#cb4-1" tabindex="-1"></a><span class="co"># create the plot with labels and title</span></span>
-<span id="cb4-2"><a href="guidelines-for-graphics.html#cb4-2" tabindex="-1"></a><span class="fu">ggplot</span>(cars) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x=</span>speed, <span class="at">y=</span>dist) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;speed (mph)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;stopping distance (feet)&quot;</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Stopping distance&quot;</span>)</span></code></pre></div>
+<span id="cb4-2"><a href="guidelines-for-graphics.html#cb4-2" tabindex="-1"></a><span class="fu">ggplot</span>(cars) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="guidelines-for-graphics.html#cb4-3" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>speed, <span class="at">y=</span>dist) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="guidelines-for-graphics.html#cb4-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-5"><a href="guidelines-for-graphics.html#cb4-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;speed (mph)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="guidelines-for-graphics.html#cb4-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;stopping distance (feet)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="guidelines-for-graphics.html#cb4-7" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Stopping distance&quot;</span>)</span></code></pre></div>
 <p><img src="03_guidelines_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 
 </div>

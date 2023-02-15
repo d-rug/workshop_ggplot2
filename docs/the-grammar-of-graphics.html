@@ -205,12 +205,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5     8   16
 ## 6     9   10</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="the-grammar-of-graphics.html#cb3-1" tabindex="-1"></a><span class="co"># make a simple plot of the data</span></span>
-<span id="cb3-2"><a href="the-grammar-of-graphics.html#cb3-2" tabindex="-1"></a><span class="fu">ggplot</span>(cars) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x=</span>speed, <span class="at">y=</span>dist) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<span id="cb3-2"><a href="the-grammar-of-graphics.html#cb3-2" tabindex="-1"></a><span class="fu">ggplot</span>(cars) <span class="sc">+</span> </span>
+<span id="cb3-3"><a href="the-grammar-of-graphics.html#cb3-3" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>speed, <span class="at">y=</span>dist) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="the-grammar-of-graphics.html#cb3-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="02_grammar_of_graphics_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 <div id="layers" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Layers<a href="the-grammar-of-graphics.html#layers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Layers are the building blocks of the grammar of graphics. There aren’t even that many of them! Here is the list, and the name of the function(s) you’ll use to control the layer. Some of the names include asterisks because there are a lot of similar options - for instance, geometry layers include <code>geom_point()</code>, <code>geom_line()</code>, <code>geom_boxplot()</code>, and many more. See the comprehensive listing on <a href="https://ggplot2.tidyverse.org/reference/">the official <code>ggplot2</code> website</a>.</p>
+<p>Layers are the building blocks of the grammar of graphics. The typical pattern is that you express the idea of a plot in the grammar of graphics by adding layers with the addition symbol (<code>+</code>). There aren’t even that many of layers to know! Here is the list, and the name of the function(s) you’ll use to control the layer. Some of the names include asterisks because there are a lot of similar options - for instance, geometry layers include <code>geom_point()</code>, <code>geom_line()</code>, <code>geom_boxplot()</code>, and many more. See the comprehensive listing on <a href="https://ggplot2.tidyverse.org/reference/">the official <code>ggplot2</code> website</a>.</p>
 <ul>
 <li>Data (<code>ggplot2()</code>) - provides the data for the visualization.</li>
 <li>Aesthetics (<code>aes()</code>) - a mapping that indicates which variables in the data control which dimension in the plot (here “dimension” is used in an abstract way to include things like shape, color, and line width.)</li>
