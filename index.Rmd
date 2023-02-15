@@ -29,4 +29,16 @@ output:
 
 # Overview {-}
 
-YOUR DESCRIPTION, LEARNING GOALS, PREREQUISITES, ETC
+The Davis R Users' Group meets weekly on Thursdays 10-12 in the Datalab classroom. For those who can't join in person, we always include a Zoom link for the meetings. We also maintain a question-and-answer forum at [d-rug.discourse.group](https://d-rug.discourse.group).
+
+The group home page is [d-rug.github.io](https://d-rug.discourse.group). That's where the calendar of upcoming meetings, link to sign up, and blog posts describing past meetings can be found.
+
+You can join the email list for reminders about the weekly meetings and news about R-related events around Davis at this link (it's also on the group home page): [https://groups.google.com/d/forum/davis-rug](https://groups.google.com/d/forum/davis-rug).
+
+## ggplot2
+Today I am going to provide some instruction about generating data visualization in R with the `ggplot2` package. We will cover:
+
+- The grammar of graphics and how it powers `ggplot2`.
+- The layers that make up a `ggplot2` data visualization.
+- Guidelines for good data viz.
+- Examples of working with `ggplot2`.
