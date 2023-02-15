@@ -1,3 +1,7 @@
+```{r include=FALSE}
+library(ggplot2)
+```
+
 # Guidelines for graphics
 
 I've attached a [PDF checklist for creating good data
